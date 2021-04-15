@@ -1,0 +1,11 @@
+{
+  "name": "01-intro-react",
+  "version": "1.0.0",
+  "description": "Introduction Course React | First Steps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mjesusoj",
+  "license": "ISC"
+}

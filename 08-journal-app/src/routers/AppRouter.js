@@ -14,8 +14,6 @@ import { JournalScreen } from '../components/journal/JournalScreen';
 import { login } from '../actions/auth';
 import { PublicRoute } from '../../../08-journal-app/src/routers/PublicRoute';
 import { PrivateRoute } from '../../../08-journal-app/src/routers/PrivateRoute';
-import { loadNotes } from '../helpers/loadNotes';
-import { setNotes } from '../actions/notes'
 
 export const AppRouter = () => {
 
@@ -32,8 +30,7 @@ export const AppRouter = () => {
                 dispatch( login( user.displayName, user.displayName ) );
                 setIsLoggedIn( true );
 
-                const notes = loadNotes( user.uid );
-                await dispatch( setNotes(notes) );
+                dispatch( startLoadingNotes( user.uid ) );
             } else {
                 setIsLoggedIn( false );
             }

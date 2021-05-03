@@ -27,6 +27,7 @@ export const AppRouter = () => {
         
         firebase.auth().onAuthStateChanged( async(user) => {
             
+            /* Error | Before send name two twices 🤦‍♂️ & create database with name on the contrary by ID 📍*/
             if ( user?.uid ) {
                 dispatch( login( user.uid, user.displayName ) );
                 setIsLoggedIn( true );

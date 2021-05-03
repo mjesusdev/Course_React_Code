@@ -6,17 +6,25 @@ export const startNewNote = () => {
     return async( dispatch, getState ) => {
 
         const { uid } = getState().auth;
-        console.log(uid);
 
+        console.log(getState().auth);
+        console.log(uid);
+        
         const newNote = {
             title: '',
             body: '',
             date: new Date().getTime()
         }
 
-        const document = await db.collection(`${ uid }/journal/notes`).add( newNote );
-
-        dispatch( activeNote( document.id, newNote ) );
+        try {
+            const doc = await db.collection(`${ uid }/journal/notes`).add( newNote );
+    
+            dispatch( activeNote( doc.id, newNote ) );
+            /* dispatch( addNewNote( doc.id, newNote ) ); */
+            
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
@@ -31,7 +39,7 @@ export const activeNote = ( id, note ) => ({
 export const startLoadingNotes = ( uid ) => {
     return async( dispatch ) => {
         const notes = await loadNotes( uid );
-        await dispatch( setNotes(notes) );
+        dispatch( setNotes(notes) );
     }
 }
 

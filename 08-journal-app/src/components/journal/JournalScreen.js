@@ -9,8 +9,6 @@ export const JournalScreen = () => {
 
     const { active } = useSelector( state => state.notes );
 
-    console.log(active);
-
     return (
         <div className="journal__main-content">
             <Sidebar />

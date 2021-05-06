@@ -73,6 +73,7 @@ export const NoteScreen = () => {
                         </div>
                     )
                 }
+
             </div>
 
             {/* <button 

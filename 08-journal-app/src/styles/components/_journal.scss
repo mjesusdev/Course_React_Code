@@ -1,4 +1,4 @@
-.journal__main-content{
+.journal__main-content {
     display: flex;
 }
 
@@ -28,9 +28,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-top: 30px;
     width: 100%;
-    
     transition: color .3s ease;
 
     &:hover {
@@ -49,6 +48,7 @@
     border-radius: 4px;
     color: $dark-grey;
     display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
     overflow: hidden;
 }

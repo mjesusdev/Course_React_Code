@@ -20,5 +20,4 @@ export const fileUpload = async ( file ) => {
     } catch (error) {
         throw error;
     }
-    // return url of image
 }

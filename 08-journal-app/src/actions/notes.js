@@ -19,8 +19,7 @@ export const startNewNote = () => {
             const doc = await db.collection(`${ uid }/journal/notes`).add( newNote );
     
             dispatch( activeNote( doc.id, newNote ) );
-            /* dispatch( addNewNote( doc.id, newNote ) ); */
-            
+            dispatch( addNewNote( doc.id, newNote ) );
         } catch (error) {
             console.log(error);
         }
@@ -112,11 +111,15 @@ export const startDeleting = ( id ) => {
 
         dispatch( deleteNote( id ) );
 
-
+        // Swal
     }
 }
 
 export const deleteNote = ( id ) => ({
     type: types.notesDelete,
     payload: id
+})
+
+export const logoutNote = () => ({
+    type: types.notesLogoutCleaning
 })

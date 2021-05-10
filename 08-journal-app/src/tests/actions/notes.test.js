@@ -17,7 +17,7 @@ describe('Test in notes-action', () => {
         await store.dispatch( startNewNote() );
 
         const actions = store.getActions();
-
+        
         expect( actions[0] ).toEqual({
             type: types.notesActive,
             payload: {

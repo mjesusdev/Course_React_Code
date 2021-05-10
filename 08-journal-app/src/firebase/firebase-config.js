@@ -11,8 +11,22 @@ const firebaseConfig = {
     appId: "1:516605645972:web:10333910bcc6d85e579081"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const firebaseConfigTesting = {
+    apiKey: "AIzaSyCm8scFxNMmnSFh2XmfNKKBRIISAjnWb9g",
+    authDomain: "redux-demo-c7476.firebaseapp.com",
+    projectId: "redux-demo-c7476",
+    storageBucket: "redux-demo-c7476.appspot.com",
+    messagingSenderId: "517398209214",
+    appId: "1:517398209214:web:dc734aabe764cc73aaf4ef"
+};
+
+if ( process.env.NODE_ENV === 'test' ) {
+    // Database Testing
+    firebase.initializeApp(firebaseConfigTesting);
+} else {
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+}
 
 const db = firebase.firestore();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();

@@ -3,21 +3,21 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDN8yNb-wF6n5ulTta6OIwnvs6GzUeogMU",
-    authDomain: "react-app-cursos-b446e.firebaseapp.com",
-    projectId: "react-app-cursos-b446e",
-    storageBucket: "react-app-cursos-b446e.appspot.com",
-    messagingSenderId: "516605645972",
-    appId: "1:516605645972:web:10333910bcc6d85e579081"
+    apiKey: process.env.REACT_APP_APIKEY,
+    authDomain: process.env.REACT_APP_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_PROJECTID,
+    storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+    appId: process.env.REACT_APP_APPID
 };
 
 const firebaseConfigTesting = {
-    apiKey: "AIzaSyCm8scFxNMmnSFh2XmfNKKBRIISAjnWb9g",
-    authDomain: "redux-demo-c7476.firebaseapp.com",
-    projectId: "redux-demo-c7476",
-    storageBucket: "redux-demo-c7476.appspot.com",
-    messagingSenderId: "517398209214",
-    appId: "1:517398209214:web:dc734aabe764cc73aaf4ef"
+    apiKey: process.env.REACT_APP_APIKEY,
+    authDomain: process.env.REACT_APP_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_PROJECTID,
+    storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+    appId: process.env.REACT_APP_APPID
 };
 
 if ( process.env.NODE_ENV === 'test' ) {

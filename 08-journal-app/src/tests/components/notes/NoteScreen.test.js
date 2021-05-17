@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 
 import '@testing-library/jest-dom';
 import { NoteScreen } from '../../../components/notes/NoteScreen';
+import { activeNote } from '../../../actions/notes';
 
 jest.mock('../../../actions/notes', () => ({
     activeNote: jest.fn()

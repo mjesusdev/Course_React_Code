@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 
 import '@testing-library/jest-dom';
 
-import { login, startLoginEmailPassword, startLogout } from "../../actions/auth";
+import { login, logout, startLoginEmailPassword, startLogout } from "../../actions/auth";
 import { types } from "../../types/types";
 
 const middlewars = [thunk];
@@ -53,7 +53,7 @@ describe('Test with the actions of Auth', () => {
         });
     });
 
-    test('should start - startLoginEmailPassword', () => {
+    test('should start - startLoginEmailPassword', async() => {
         
         await store.dispatch( startLoginEmailPassword('test@testing.com', '123456') );
 

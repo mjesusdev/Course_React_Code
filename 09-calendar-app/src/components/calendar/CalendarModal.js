@@ -7,8 +7,7 @@ import DateTimePicker from 'react-datetime-picker';
 import Swal from 'sweetalert2';
 
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew } from '../../actions/events';
-/* import { eventClearActiveEvent, eventStartAddNew, eventStartUpdate } from '../../actions/events'; */
+import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../actions/events';
 
 const customStyles = {
     content : {
@@ -51,6 +50,8 @@ export const CalendarModal = () => {
     useEffect( () => {
         if ( activeEvent ) {
             setFormValues( activeEvent );
+        } else {
+            setFormValues( initEvent );
         }
     }, [activeEvent, setFormValues]);
 
@@ -64,9 +65,7 @@ export const CalendarModal = () => {
     const closeModal = () => {
         // TODO: cerrar el modal
         dispatch( uiCloseModal() );
-
-        /* dispatch( eventClearActiveEvent() ); */
-
+        dispatch( eventClearActiveEvent() );
         // Clear the form
         setFormValues( initEvent );
     }
@@ -101,20 +100,22 @@ export const CalendarModal = () => {
             return setTitleValid(false);
         }
 
-        //TODO: realise save on the BD
-        dispatch( eventAddNew({
-            ...formValues,
-            id: new Date().getTime(),
-            user: {
-                _id: '123',
-                name: 'Jesus'
-            }
-        }) )
+        if ( activeEvent ) {
+            dispatch( eventUpdated( formValues ) );
+        } else {
+            dispatch( eventAddNew({
+                ...formValues,
+                id: new Date().getTime(),
+                user: {
+                    _id: '123',
+                    name: 'Jesus'
+                }
+            }))
+        }
 
         setTitleValid(true);
         closeModal();
     }
-
 
     return (
         <Modal
@@ -125,7 +126,7 @@ export const CalendarModal = () => {
             className="modal"
             overlayClassName="modal-fondo"
         >
-            <h1 className="text-info"> New Event </h1>
+            <h1 className="text-info"> { ( activeEvent ) ? 'Edit Event' : 'New Event' } </h1>
             <hr />
             <form 
                 className="container"

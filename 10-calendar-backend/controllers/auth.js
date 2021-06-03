@@ -1,6 +1,7 @@
 const { response } = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const { generateJWT } = require('../helpers/jwt');
 
 // Function for create user and save SECURE in BD ✅
 const createUser = async (req, res = response ) => {
@@ -23,11 +24,15 @@ const createUser = async (req, res = response ) => {
         user.password = bcrypt.hashSync( password, salt );
         
         await user.save();
+
+        // Generate JWT
+        const token = await generateJWT( user.id, user.name );
         
         res.status(201).json({
             ok: true,
             uid: user.id,
-            name: user.name
+            name: user.name,
+            token
         });
     } catch (error) {
         console.log(error);
@@ -63,21 +68,29 @@ const loginUser = async (req, res = response) => {
         }
 
         // Generate our JWT | TOKEN
+        const token = await generateJWT( user.id, user.name );
+
         res.json({
             ok: true,
             uid: user.id,
-            name: user.name
+            name: user.name,
+            token
         });
     } catch (error) {
-
+        throw error;
     }
 }
 
 // Function for renew token | LOGIN ✅
-const renewToken = (req, res = response ) => {
+const renewToken = async (req, res = response ) => {
+    const { uid, name }  = req;
+
+    // Generate new JWT and return in this 👇
+    const token = await generateJWT( uid, name );
+
     res.json({
         ok: true,
-        msg: 'renew'
+        token
     })
 }
 

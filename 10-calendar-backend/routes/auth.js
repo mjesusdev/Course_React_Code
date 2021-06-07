@@ -15,7 +15,7 @@ router.post(
     [ // middlewares
         check('name', 'The name is required').not().isEmpty(),
         check('email', 'The email is required').isEmail(),
-        check('password', 'The password should is 8 characters').isLength({ min: 6 }),
+        check('password', 'The password should is 8 characters').isLength({ min: 8 }),
         validate
     ], 
     createUser);
@@ -24,7 +24,7 @@ router.post(
     '/', 
     [ // middlewares
         check('email', 'The email is required').isEmail(),
-        check('password', 'The password should is 8 characters').isLength({ min: 6 }),
+        check('password', 'The password should is 8 characters').isLength({ min: 8 }),
         validate
     ],
     loginUser);

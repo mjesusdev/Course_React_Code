@@ -50,7 +50,7 @@ const loginUser = async (req, res = response) => {
     try {
         const user = await User.findOne({ email });
         
-        if ( user ) {
+        if ( !user ) {
             return res.status(400).json({
                 ok: false,
                 msg: 'The User not exists with this email ❗'
@@ -76,8 +76,12 @@ const loginUser = async (req, res = response) => {
             name: user.name,
             token
         });
+
     } catch (error) {
-        throw error;
+        res.status(500).json({
+            ok: false,
+            msg: 'Speak with the Administrator, please!'
+        })
     }
 }
 

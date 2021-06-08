@@ -1,10 +1,11 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import jest from "jest-environment-node";
-
-import { db } from '../../firebase/firebase-config';
+/* import jest from "jest-environment-node";
+ */
 import { types } from '../../types/types';
+import { db } from '../../firebase/firebase-config';
+import { fileUpload } from '../../helpers/fileUpload';
 import { startNewNote, startLoadingNotes, startSaveNote, startUploading } from '../../actions/notes';
 
 jest.mock('../../helpers/fileUpload', () => ({
@@ -12,7 +13,7 @@ jest.mock('../../helpers/fileUpload', () => ({
         return 'https://hola-mundo.com/cosa.jpg';
         // return Promise.resolve('https://hola-mundo.com/cosa.jpg');
     })
-}))
+}));
 
 const middlewars = [thunk];
 const mockStore = configureStore(middlewars);

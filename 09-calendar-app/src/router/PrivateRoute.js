@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Redirect, Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 
 export const PrivateRoute = ({
     isAutenticated,

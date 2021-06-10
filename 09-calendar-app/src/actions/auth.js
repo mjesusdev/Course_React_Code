@@ -33,7 +33,7 @@ export const startRegister = ( email, password, name ) => {
             localStorage.setItem('token', body.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
 
-            dispatch( register({
+            dispatch( login({
                 uid: body.uid,
                 name: body.name
             }) );
@@ -53,7 +53,7 @@ export const startChecking = () => {
             localStorage.setItem('token', body.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
         
-            dispatch( register({
+            dispatch( login({
                 uid: body.uid,
                 name: body.name
             }) );
@@ -65,18 +65,13 @@ export const startChecking = () => {
 
 const checkingFinish = () => ({ type: types.authCheckingFinish })
 
-const register = ( user ) => ({
-    type: types.authStartRegister,
-    payload: user
-});
-
 const login = ( user ) => ({ 
     type: types.authLogin,
     payload: user
 });
 
 export const startLogout = () => {
-    return async( dispatch ) => {
+    return ( dispatch ) => {
         localStorage.clear();
         dispatch( eventLogout() );
         dispatch( logout() );

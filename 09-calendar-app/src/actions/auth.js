@@ -1,6 +1,7 @@
 import { fetchWithToken, fetchWitoutToken } from "../helpers/fetch"
 import { types } from "../types/types";
 import Swal from 'sweetalert2';
+import { eventLogout } from "./events";
 
 export const startLogin = ( email, password ) => {
     return async( dispatch ) => {
@@ -62,16 +63,24 @@ export const startChecking = () => {
     }
 }
 
-const checkingFinish = () => ({
-    type: types.authCheckingFinish
-})
+const checkingFinish = () => ({ type: types.authCheckingFinish })
+
+const register = ( user ) => ({
+    type: types.authStartRegister,
+    payload: user
+});
 
 const login = ( user ) => ({ 
     type: types.authLogin,
     payload: user
 });
 
-const register = ( user ) => ({
-    type: types.authStartRegister,
-    payload: user
-})
+export const startLogout = () => {
+    return async( dispatch ) => {
+        localStorage.clear();
+        dispatch( eventLogout() );
+        dispatch( logout() );
+    }
+}
+
+const logout = () => ({ type: types.authLogout })

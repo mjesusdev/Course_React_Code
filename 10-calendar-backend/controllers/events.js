@@ -56,7 +56,7 @@ const updateEvent = async ( req, res = response ) => {
         if ( event.user.toString() !== uid ) {
             return res.status(401).json({
                 ok: false,
-                msg: 'You do not have permise for edit this event ❗'
+                msg: `You don't have permission for edit this event ❗`
             })
         }
 
@@ -65,7 +65,7 @@ const updateEvent = async ( req, res = response ) => {
             user: uid
         }
 
-        const eventUpdated = await Event.findOneAndUpdate( eventId, newEvent, { new: true } );
+        const eventUpdated = await Event.findByIdAndUpdate( eventId, newEvent, { new: true } );
 
         res.json({
             ok: true,

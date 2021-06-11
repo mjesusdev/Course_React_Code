@@ -7,7 +7,7 @@ import DateTimePicker from 'react-datetime-picker';
 import Swal from 'sweetalert2';
 
 import { uiCloseModal } from '../../actions/ui';
-import { eventStartAddNew, eventClearActiveEvent, eventUpdated } from '../../actions/events';
+import { eventStartAddNew, eventClearActiveEvent, eventStartUpdate } from '../../actions/events';
 
 const customStyles = {
     content : {
@@ -93,7 +93,7 @@ export const CalendarModal = () => {
         const momentEnd   = moment( end );
 
         if ( momentStart.isSameOrAfter( momentEnd )) {
-            Swal.fire('Error', 'The end date should older than of the start date', 'error');
+            return Swal.fire('Error', 'The end date should older than the start date ❗', 'error');
         }
 
         if ( title.trim().length < 2 ) {
@@ -101,9 +101,9 @@ export const CalendarModal = () => {
         }
 
         if ( activeEvent ) {
-            dispatch( eventUpdated( formValues ) );
+            dispatch( eventStartUpdate( formValues ) );
         } else {
-            dispatch( eventStartAddNew(formValues) );
+            dispatch( eventStartAddNew( formValues ) );
         }
 
         setTitleValid(true);

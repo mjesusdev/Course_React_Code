@@ -885,7 +885,7 @@ exports[`Test in <AppRouter /> should shows the public route ✅ 1`] = `
               onChange={[Function]}
               placeholder="Email"
               type="text"
-              value="hola@jesus.com"
+              value=""
             />
           </div>
           <div
@@ -897,7 +897,7 @@ exports[`Test in <AppRouter /> should shows the public route ✅ 1`] = `
               onChange={[Function]}
               placeholder="Password"
               type="password"
-              value="123456789"
+              value=""
             />
           </div>
           <div

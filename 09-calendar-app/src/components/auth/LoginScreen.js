@@ -10,8 +10,8 @@ export const LoginScreen = () => {
     const dispatch = useDispatch();
 
     const [ formLoginValues, handleLoginInputChange ] = useForm({
-        lEmail: 'hola@jesus.com',
-        lPassword: '123456789'
+        lEmail: '',
+        lPassword: ''
     });
     
     const [ formRegisterValues, handleRegisterInputChange ] = useForm({

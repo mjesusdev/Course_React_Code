@@ -33,5 +33,50 @@ describe('Test in <AppRouter />', () => {
         expect( wrapper ).toMatchSnapshot();
         expect( wrapper.find('h5').exists() ).toBe(true);
     })
+
+    test('should shows the public route ✅', () => {
+        const initState = {
+            auth: {
+                checking: false,
+                uid: null
+            }
+        };
+        const store = mockStore(initState);
+
+        const wrapper = mount(
+            <Provider store={ store }>
+                <AppRouter />
+            </Provider>
+        );
+
+        expect( wrapper ).toMatchSnapshot();
+        expect( wrapper.find('.login-container').exists() ).toBe(true);
+    })
+
+    test('should shows the CalendarScreen 📗', () => {
+        const initState = {
+            calendar: {
+                events: []
+            },
+            ui: {
+                modalOpen: false
+            },
+            auth: {
+                checking: false,
+                uid: '123',
+                name: 'Test'
+            }
+        };
+        const store = mockStore(initState);
+
+        const wrapper = mount(
+            <Provider store={ store }>
+                <AppRouter />
+            </Provider>
+        );
+
+        expect( wrapper ).toMatchSnapshot();
+        expect( wrapper.find('.calendar-screen').exists() ).toBe(true);
+    })
     
 })

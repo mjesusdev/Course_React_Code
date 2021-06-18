@@ -32,7 +32,7 @@ const initState = {
         name: 'Test'
     },
     ui: {
-        openModal: false
+        modalOpen: false
     }
 };
 

@@ -35,7 +35,7 @@ export const LoginScreen = () => {
         e.preventDefault();
 
         if ( rPassword1 !== rPassword2 ) {
-            return Swal.fire('Error', 'The password should be the same');
+            return Swal.fire('Error', 'The password should be the same', 'error');
         }
         
         dispatch( startRegister( rEmail, rPassword1, rName ) );

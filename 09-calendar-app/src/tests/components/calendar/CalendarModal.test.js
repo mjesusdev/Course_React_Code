@@ -77,14 +77,79 @@ describe('Test in <CalendarModal />', () => {
         expect( eventClearActiveEvent ).toHaveBeenCalled();
     })
     
-    test('should show error if not exists the title', () => {
-        
+    test('should show error if not exists the title', () => {    
         wrapper.find('form').simulate('submit', { 
             preventDefault(){} 
         });
         
         expect( wrapper.find('input[name="title"]').hasClass('is-invalid')).toBe( true );
     })
+
+    test('should create a new event ✅', () => {
+        const initState = {
+            calendar: {
+                events: [],
+                activeEvent: null
+            },
+            auth: {
+                uid: '123',
+                name: 'Test'
+            },
+            ui: {
+                modalOpen: true
+            }
+        };
+        
+        const store = mockStore(initState);
+        store.dispatch = jest.fn();
+        
+        const wrapper = mount(
+            <Provider store={ store }>
+                <CalendarModal />
+            </Provider>
+        );
+
+        wrapper.find('input[name="title"]').simulate('change', {
+            target: {
+                name: 'title',
+                value: 'Hello test'
+            }
+        });
+        
+        wrapper.find('form').simulate('submit', {
+            preventDefault() {}
+        });
+        
+        expect( eventStartAddNew ).toHaveBeenCalledWith({
+            end: expect.anything(),
+            start: expect.anything(),
+            title:'Hello test',
+            notes: ''
+        });
+        
+        expect( eventClearActiveEvent ).toHaveBeenCalled();
+    })
     
-    
+    test('should validate the dates', () => {
+        wrapper.find('input[name="title"]').simulate('change', {
+            target: {
+                name: 'title',
+                value: 'Hello test'
+            }
+        });
+        
+        const today = new Date();
+        
+        act(() => {
+            wrapper.find('DateTimePicker').at(1).prop('onChange')(today);
+        })
+
+        wrapper.find('form').simulate('submit', {
+            preventDefault() {}
+        });
+
+        expect( Swal.fire ).toHaveBeenCalledWith("Error", "The end date should older than the start date ❗", "error");
+
+    })
+
 })

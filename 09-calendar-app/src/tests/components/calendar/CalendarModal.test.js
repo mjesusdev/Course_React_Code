@@ -67,5 +67,24 @@ describe('Test in <CalendarModal />', () => {
     test('should shows correctly', () => {
         expect( wrapper.find('Modal').prop('isOpen') ).toBe(true);
     })
+
+    test('should run the refresh action and close modal', () => {
+        wrapper.find('form').simulate('submit', { 
+            preventDefault(){}
+        });
+        
+        expect( eventStartUpdate ).toHaveBeenCalledWith( initState.calendar.activeEvent );
+        expect( eventClearActiveEvent ).toHaveBeenCalled();
+    })
+    
+    test('should show error if not exists the title', () => {
+        
+        wrapper.find('form').simulate('submit', { 
+            preventDefault(){} 
+        });
+        
+        expect( wrapper.find('input[name="title"]').hasClass('is-invalid')).toBe( true );
+    })
+    
     
 })

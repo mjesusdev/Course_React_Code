@@ -1,10 +1,9 @@
-import React from 'react';
-import { Navbar } from '../components/ui/Navbar';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import { MarvelScreen } from '../components/marvel/MarvelScreen';
-import { HeroScreen } from '../components/heroes/HeroScreen';
 import { DcScreen } from '../components/dc/DcScreen';
+import { HeroScreen } from '../components/heroes/HeroScreen';
+import { MarvelScreen } from '../components/marvel/MarvelScreen';
+import { Navbar } from '../components/ui/Navbar';
 import { SearchScreen } from '../components/search/SearchScreen';
 
 export const DashboardRoutes = () => {
@@ -13,17 +12,16 @@ export const DashboardRoutes = () => {
             <Navbar />
 
             <div className="container mt-2">
-                <Switch>
-                    <Route exact path="/marvel" component={ MarvelScreen } />
-                    <Route exact path="/hero/:heroeId" component={ HeroScreen } />
-                    <Route exact path="/dc" component={ DcScreen } />
-                    <Route exact path="/search" component={ SearchScreen } />
+                <Routes>
+                    <Route path="marvel" element={<MarvelScreen />} />
+                    <Route path="dc" element={<DcScreen />} />
 
-                    <Redirect to="/marvel" />
-                </Switch>
+                    <Route path="search" element={<SearchScreen />} />
+                    <Route path="hero/:heroeId" element={<HeroScreen />} />
+
+                    <Route path="/" element={<MarvelScreen />}/>
+                </Routes>
             </div>
-
-
         </>
     )
 }

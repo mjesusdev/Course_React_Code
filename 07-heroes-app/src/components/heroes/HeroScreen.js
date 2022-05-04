@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import { getHeroById } from '../../selectors/getHeroById';
 import { heroImages } from '../../helpers/heroImages';
 
@@ -10,7 +10,7 @@ export const HeroScreen = ({ history }) => {
     const hero = useMemo(() => getHeroById( heroeId ), [ heroeId ]);
 
     if ( !hero ) {
-        return <Redirect to="/" />;
+        return <Route path="/" render={() => <Redirect to="/" /> } />;
     }
 
     const handleReturn = () => {

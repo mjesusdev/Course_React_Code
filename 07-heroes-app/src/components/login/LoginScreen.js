@@ -1,15 +1,15 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthContext'
 import { types } from '../../types/types';
 
-export const LoginScreen = ({ history }) => {
+export const LoginScreen = () => {
 
     const { dispatch } = useContext(AuthContext);
 
     const handleLogin = () => {
-        // history.push('/');
-        
         const lastPath = localStorage.getItem('lastPath') || '/';
+        const navigate = useNavigate();
 
         dispatch({
             type: types.login,
@@ -18,7 +18,7 @@ export const LoginScreen = ({ history }) => {
             },
         });
 
-        history.replace( lastPath );
+        navigate( lastPath );
     }
 
     return (

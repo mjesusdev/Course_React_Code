@@ -1,29 +1,31 @@
 import React, { useMemo } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
+
 import { HeroCard } from '../heroes/HeroCard';
 import { useForm } from '../../hooks/useForm';
-import { useLocation } from 'react-router-dom';
 import { getHeroesByName } from '../../selectors/getHeroesByName';
 
-export const SearchScreen = ({ history }) => {
+export const SearchScreen = () => {
 
+    const navigate = useNavigate();
     const location = useLocation();
-    const { q = '' } = queryString.parse( location.search );
+    const { query = '' } = queryString.parse( location.search );
 
     const [ formValues, handleInputChange ] = useForm({
-        searchText: q
+        searchText: query
     });
 
     const { searchText } = formValues;
-    const heroesFiltered = useMemo(() => getHeroesByName( q ), [q])
+    const heroesFiltered = useMemo(() => getHeroesByName( query ), [query])
 
     const handleSearch = (e) => {
         e.preventDefault();
-        history.push(`?q=${ searchText }`);
+        navigate(`?q=${ searchText }`);
     }
 
     return (
-        <div>
+        <>
             <h1>Search Screen</h1>
             <hr />
             
@@ -57,19 +59,12 @@ export const SearchScreen = ({ history }) => {
                     <hr />
 
                     { 
-                        (q ==='') 
-                            && 
-                            <div className="alert alert-info">
-                                Search a hero
-                            </div>
-                    }
-
-                    { 
-                        (q !=='' && heroesFiltered.length === 0 ) 
-                            &&
-                            <div className="alert alert-danger">
-                                There is no a hero with { q }
-                            </div>
+                        ( query ==='' ) 
+                            ? <div className="alert alert-info"> Search a hero </div>
+                            : ( heroesFiltered.length === 0 ) && 
+                                <div className="alert alert-danger"> 
+                                    There is no a hero with { query } 
+                                </div>
                     }
 
                     {
@@ -82,6 +77,6 @@ export const SearchScreen = ({ history }) => {
                     }
                 </div>
             </div>
-        </div>
+        </>
     )
 }

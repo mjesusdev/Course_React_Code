@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { Routes } from 'react-router-dom';
 
 import { AuthContext } from '../auth/AuthContext';
@@ -13,22 +13,20 @@ export const AppRouter = () => {
     const { user } = useContext(AuthContext);
 
     return (
-        <Router>
-            <div>
-                <Routes> 
-                    <PublicRoute
-                        path="/login"
-                        element={ <LoginScreen /> } 
-                        isAutenticated={ user.logged }
-                    />
-                    
-                    <PrivateRoute 
-                        path="/*"
-                        element={ <DashboardRoutes /> }
-                        isAutenticated={ user.logged }
-                    />
-                </Routes>
-            </div>
-        </Router>
+        <div>
+            <Routes> 
+                <PublicRoute
+                    path="/login"
+                    element={ <LoginScreen /> } 
+                    isAutenticated={ user.logged }
+                />
+                
+                <PrivateRoute 
+                    path="/*"
+                    element={ <DashboardRoutes /> }
+                    isAutenticated={ user.logged }
+                />
+            </Routes>
+        </div>
     )
 }

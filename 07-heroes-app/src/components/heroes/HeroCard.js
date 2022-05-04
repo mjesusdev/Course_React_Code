@@ -17,7 +17,6 @@ export const HeroCard = ({
                     <img src={ heroImages(`./${ id }.jpg`) } className="card-img" alt={ superhero } />
                 </div>
                 <div className="col-md-8">
-                    
                     <div className="card-body">
                         <h5 className="card-title"> { superhero } </h5>
                         <p className="card-text"> { alter_ego} </p>
@@ -34,12 +33,9 @@ export const HeroCard = ({
                         <Link to={ `./hero/${ id }` }>
                             Más...
                         </Link>
-
                     </div>
-
                 </div>
             </div>
         </div>
     )
-
 }

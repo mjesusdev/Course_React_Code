@@ -4,7 +4,6 @@ import { getHeroById } from '../../selectors/getHeroById';
 import { heroImages } from '../../helpers/heroImages';
 
 export const HeroScreen = () => {
-
     const { heroeId } = useParams();
     const navigate = useNavigate();
 
@@ -44,7 +43,7 @@ export const HeroScreen = () => {
                     <li className="list-group-item"> <b> First appearance: </b> { first_appearance } </li>
                 </ul>
 
-                <h5> Characters </h5>
+                <h5 className="mt-3"> Characters </h5>
                 <p> { characters } </p>
 
                 <button 

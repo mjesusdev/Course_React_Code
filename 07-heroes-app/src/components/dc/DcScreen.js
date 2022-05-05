@@ -8,7 +8,6 @@ export const DcScreen = () => {
             <hr />
 
             <HeroList publisher="DC Comics" />
-
         </div>
     )
 }

@@ -1,24 +1,25 @@
-import { React, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../auth/AuthContext'
+import { AuthContext } from '../../auth/authContext'
 import { types } from '../../types/types';
 
 export const LoginScreen = () => {
-
-    const { dispatch } = useContext(AuthContext);
     const navigate = useNavigate();
+    const { dispatch } = useContext(AuthContext);
 
     const handleLogin = () => {
-        const lastPath = localStorage.getItem('lastPath') || '/';
-
-        dispatch({
+        const action = {
             type: types.login,
-            payload: {
-                name: 'Pepito'
-            },
-        });
+            payload: { name: 'Pepito' }
+        }
 
-        navigate( lastPath );
+        dispatch(action);
+
+        const lastPath = localStorage.getItem('lastPath') || '/marvel';
+
+        navigate( lastPath, {
+            replace: true
+        });
     }
 
     return (
@@ -32,7 +33,6 @@ export const LoginScreen = () => {
             >
                 Login
             </button>
-
         </div>
     )
 }

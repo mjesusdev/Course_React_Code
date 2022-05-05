@@ -1,12 +1,12 @@
-import { React } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import { Navbar } from '../components/ui/Navbar';
 
 import { DcScreen } from '../components/dc/DcScreen';
-import { HeroScreen } from '../components/heroes/HeroScreen';
 import { MarvelScreen } from '../components/marvel/MarvelScreen';
 import { SearchScreen } from '../components/search/SearchScreen';
+import { HeroScreen } from '../components/heroes/HeroScreen';
 
 export const DashboardRoutes = () => {
     return (

@@ -2,12 +2,11 @@ import React, { useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 
-import { HeroCard } from '../heroes/HeroCard';
 import { useForm } from '../../hooks/useForm';
 import { getHeroesByName } from '../../selectors/getHeroesByName';
+import { HeroCard } from '../heroes/HeroCard';
 
 export const SearchScreen = () => {
-
     const navigate = useNavigate();
     const location = useLocation();
     const { query = '' } = queryString.parse( location.search );
@@ -17,11 +16,11 @@ export const SearchScreen = () => {
     });
 
     const { searchText } = formValues;
-    const heroesFiltered = useMemo(() => getHeroesByName( query ), [query])
+    const heroesFiltered = useMemo( () => getHeroesByName( query ), [query])
 
     const handleSearch = (e) => {
         e.preventDefault();
-        navigate(`?q=${ searchText }`);
+        navigate(`?query=${ searchText }`);
     }
 
     return (
@@ -46,8 +45,8 @@ export const SearchScreen = () => {
                         />
 
                         <button
-                            type="submit"
                             className="btn mt-2 btn-block btn-outline-primary"
+                            type="submit"
                         >
                             Search...
                         </button>
@@ -58,8 +57,8 @@ export const SearchScreen = () => {
                     <h4> Results </h4>
                     <hr />
 
-                    { 
-                        ( query ==='' ) 
+                    {
+                        ( query === '' )
                             ? <div className="alert alert-info"> Search a hero </div>
                             : ( heroesFiltered.length === 0 ) && 
                                 <div className="alert alert-danger"> 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { AppRouter } from '../../routers/AppRouter';
-import { AuthContext } from '../../auth/AuthContext';
+import { authContext } from '../../auth/authContext';
 
 describe('Tests on <AppRouter />', () => {
     test('should show login if not authenticate ', () => {
@@ -13,9 +13,9 @@ describe('Tests on <AppRouter />', () => {
         }
         
         const wrapper = mount(
-            <AuthContext.Provider value={ contextValue }>
+            <authContext.Provider value={ contextValue }>
                 <AppRouter />
-            </AuthContext.Provider>
+            </authContext.Provider>
         );
         
         expect( wrapper ).toMatchSnapshot();
@@ -32,9 +32,9 @@ describe('Tests on <AppRouter />', () => {
         }
         
         const wrapper = mount(
-            <AuthContext.Provider value={ contextValue }>
+            <authContext.Provider value={ contextValue }>
                 <AppRouter />
-            </AuthContext.Provider>
+            </authContext.Provider>
         );
         
         expect( wrapper ).toMatchSnapshot();

@@ -4,7 +4,7 @@ import { MemoryRouter, Router } from 'react-router';
 import '@testing-library/jest-dom';
 
 import { Navbar } from '../../../components/ui/Navbar';
-import { AuthContext } from '../../../auth/AuthContext';
+import { authContext } from '../../../auth/authContext';
 import { types } from '../../../types/types';
 
 describe('Pruebas en <Navbar />', () => {
@@ -26,13 +26,13 @@ describe('Pruebas en <Navbar />', () => {
     }
 
     const wrapper = mount(
-        <AuthContext.Provider value={ contextValue }>
+        <authContext.Provider value={ contextValue }>
             <MemoryRouter>
                 <Router history={ historyMock }>
                     <Navbar />
                 </Router>
             </MemoryRouter>
-        </AuthContext.Provider>
+        </authContext.Provider>
     );
 
     afterEach(() => {

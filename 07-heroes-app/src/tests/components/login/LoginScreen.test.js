@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { LoginScreen } from "../../../components/login/LoginScreen";
-import { AuthContext } from '../../../auth/AuthContext';
+import { authContext } from '../../../auth/authContext';
 import { types } from '../../../types/types';
 
 describe('Pruebas en <LoginScreen />', () => {
@@ -18,9 +18,9 @@ describe('Pruebas en <LoginScreen />', () => {
     }
     
     const wrapper = mount(
-        <AuthContext.Provider value={ contextValue }>
+        <authContext.Provider value={ contextValue }>
             <LoginScreen history={ history }/>
-        </AuthContext.Provider>
+        </authContext.Provider>
     );
 
     test('should show the component correctly', () => {

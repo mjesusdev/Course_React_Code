@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { DashboardRoutes } from '../../routers/DashboardRoutes';
 import { MemoryRouter } from 'react-router';
-import { AuthContext } from '../../auth/AuthContext';
+import { authContext } from '../../auth/authContext';
 
 describe('Pruebas en <DashboardRoutes />', () => {
 
@@ -17,11 +17,11 @@ describe('Pruebas en <DashboardRoutes />', () => {
     test('should show correctly', () => {
 
         const wrapper = mount(
-            <AuthContext.Provider value={ contextValue }>
+            <authContext.Provider value={ contextValue }>
                 <MemoryRouter>
                     <DashboardRoutes />
                 </MemoryRouter>
-            </AuthContext.Provider>
+            </authContext.Provider>
         );
 
         expect( wrapper ).toMatchSnapshot();
